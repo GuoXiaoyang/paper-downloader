@@ -95,27 +95,26 @@ function segDownload(tab) {
     chrome.tabs.executeScript(tab.id, {file: 'js/jquery.js'}, function(){
         chrome.tabs.executeScript(tab.id, {file:'js/segDownload.js'}, function (results) {
             var residueThesis = [];
-            if (results && results[0] && results[0].length) {
+            console.log(results);
+            if (results && results[0] && results[0].length){
                 results[0].forEach(function(item) {
-                    if(item.access) {
-                        $.get(item.download_a, function (data, textStatus) {
-                            // console.log("data", data);
-                            // alert(data);
-                            var reg_pattern = /http:\/\/[\S]+.pdf[\S]+[\w+]/g;
-                            var download_link = reg_pattern.exec(data);
-                            chrome.downloads.download({
-                                url: download_link[0],
-                                filename: item.filename,
-                                conflictAction: 'uniquify',
-                                saveAs: false
-                            });
-
+                    console.log('access = '+item.access);
+                    console.log('year = '+item.year);
+                    console.log('title = '+item.title);
+                    console.log('url = '+item.url);
+                    if(item.access){	//whether have the privilege
+                        chrome.downloads.download({
+                            url:item.url,
+                            filename:'【'+item.year+'】'+item.title+'.pdf',
+                            conflictAction: 'uniquify',
+                            saveAs: false
                         });
-                    } else {
-                        residueThesis.push('《'+item.filename+'》');
                     }
-                })
-
+                    else{
+                        //alert('Cannot download 《'+item.title+' 》\n You have no access authority!');
+                        residueThesis.push('《'+item.title+'》');
+                    }
+                });
             }
             console.log(residueThesis.length);
             if(residueThesis.length > 0){
