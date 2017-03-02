@@ -14,10 +14,8 @@ console.log("starting...");
 
 for(var i=0;i<downURL.length;i++) {
     var result = downURL[i];
-    console.log(result,$(result).length);
     var targetItem = $(result).parent().parent();
     paper_ele.download_a = $("td:eq(1) a",targetItem)[0];
-    console.log("checked-downloader-links:",paper_ele.download_a);
     var title = $("td:eq(1)",targetItem).text().replace(/\s/g,'');
     var date = $("td:eq(4)",targetItem).text().match(/\d{4}/g);
     var authors = $("td:eq(2)",targetItem).text().split(";")[0];
@@ -28,7 +26,6 @@ for(var i=0;i<downURL.length;i++) {
     var download_locked = $(".icon-access-locked",targetItem);
     var access = true;
     paper_data.push(paper_ele);
-    console.log("downloadURL",i,":",paper_ele.download_a);
     paper_ele.download_a.click();
 }
 
