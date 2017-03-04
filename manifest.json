@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "IEEE Downloader",
+  "name": "Paper Downloader",
   "version": "1.0",
   "description": "下载论文",
   "icons": {
