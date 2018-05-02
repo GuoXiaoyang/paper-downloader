@@ -20,7 +20,7 @@ function ieeeDownload(tab) {
                         $.get(item.download_a, function (data, textStatus) {
                             // console.log("data", data);
                             // alert(data);
-                            var reg_pattern = /http:\/\/[\S]+.pdf[\S]+[\w+]/g;
+                            var reg_pattern = /https:\/\/[\S]+.pdf[\S]+[\w+]/g;
                             var download_link = reg_pattern.exec(data);
                             chrome.downloads.download({
                                 url: download_link[0],
