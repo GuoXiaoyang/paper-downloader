@@ -17,14 +17,14 @@ function ieeeDownload(tab) {
             if (results && results[0] && results[0].length) {
                 results[0].forEach(function(item) {
                     if(item.access) {
-                        $.get(item.download_a, function (data, textStatus) {
+                        $.get(item.url, function (data, textStatus) {
                             // console.log("data", data);
                             // alert(data);
                             var reg_pattern = /https:\/\/[\S]+.pdf[\S]+[\w+]/g;
                             var download_link = reg_pattern.exec(data);
                             chrome.downloads.download({
                                 url: download_link[0],
-                                filename: item.filename,
+                                filename:'【'+item.year+'】'+item.title+'.pdf',
                                 conflictAction: 'uniquify',
                                 saveAs: false
                             });
@@ -125,7 +125,41 @@ function segDownload(tab) {
     });
 }
 
+function sciencedirectDownload(tab) {
+    chrome.tabs.executeScript(tab.id, {file: 'js/jquery.js'}, function(){
+        chrome.tabs.executeScript(tab.id, {file:'js/sciencedirectDownload.js'}, function (results) {
+            var residueThesis = [];
+            if (results && results[0] && results[0].length) {
+                results[0].forEach(function(item) {
+                    if(item.access) {
+                        $.get(item.url, function (data, textStatus) {
+                            // console.log("data", data);
+                            // alert(data);
+                            var reg_pattern = /https:\/\/[\S]+.pdf[\S]+(?=")/g;
+                            var download_link = reg_pattern.exec(data);
+							console.log('url:  '+download_link)
+                            chrome.downloads.download({
+                                url: download_link[0],
+                                filename: '【'+item.year+'】'+item.title+'.pdf',
+                                conflictAction: 'uniquify',
+                                saveAs: false
+                            });
 
+                        });
+                    } else {
+                        residueThesis.push('《'+item.title+'》');
+                    }
+                })
+
+            }
+            console.log(residueThesis.length);
+            if(residueThesis.length > 0){
+                alert('Cannot download \n'+residueThesis.join('\n')+' \n You have no access authority!');
+            }
+        });
+
+    });
+}
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
     currentID = tab.id;
     currentIndex = tab.index;
@@ -136,8 +170,10 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
         var reg_cnki = /kns.cnki.net/g;
         var reg_ieee = /ieeexplore.ieee.org/g;
         var reg_seg = /library.seg.org/g;
+		var reg_sciencedirect = /sciencedirect.com/g;
         if(reg_cnki.exec(URI) !== null) match="cnki";
         if(reg_ieee.exec(URI) !== null) match="ieee";
+        if(reg_sciencedirect.exec(URI) !== null) match="science";
         if(reg_seg.exec(URI) !== null) match="seg";
         switch (match) {
             case "ieee":
@@ -149,6 +185,9 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
             case "seg":
                 segDownload(tab);
                 break;
+			case "science":
+				sciencedirectDownload(tab);
+				break;
             default:
                 console.log("not matched");
         }
