@@ -1,7 +1,7 @@
 {
    "background": {
-      "scripts": [ "js/background.js", "js/jquery.js", "js/ieeeDownload.js"]
-   },
+	  "scripts": [ "js/background.js", "js/jquery.js", "js/ieeeDownload.js", "js/sciencedirectDownload.js","js/update.js"]
+   }, 
    "browser_action": {
       "default_icon": {
          "32": "images/icon32.png"
@@ -10,10 +10,10 @@
       "default_title": "Paper Downloader"
    },
    "content_scripts": [ {
-      "js": [ "js/background.js"],
+      "js": [ "js/jquery.js"],
       "matches": [ "\u003Call_urls>" ],
       "run_at": "document_end"
-   } ],
+   }],
    "description": "下载论文",
    "icons": {
       "128": "images/icon128.png",
@@ -25,5 +25,5 @@
    "name": "Paper Downloader",
    "permissions": [ "\u003Call_urls>", "webNavigation", "contextMenus", "tabs", "downloads" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "1.2"
+   "version": "1.4.2"
 }
