@@ -10,6 +10,10 @@ chrome.contextMenus.create({
 });
 
 
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// ieeexplore.ieee.org
+
 function ieeeDownload(tab) {
     chrome.tabs.executeScript(tab.id, {file: 'js/jquery.js'}, function(){
         chrome.tabs.executeScript(tab.id, {file:'js/ieeeDownload.js'}, function (results) {
@@ -45,6 +49,9 @@ function ieeeDownload(tab) {
     });
 }
 
+
+////////////////////////////////////////////////////////////////////////////////////
+// cnki
 
 function cnkiDownload(tab) {
     chrome.tabs.executeScript(tab.id, {file: 'js/jquery.js'}, function() {
@@ -87,9 +94,45 @@ chrome.extension.onRequest.addListener(function(paper_data) {
 });
 
 
+///////////////////////////////////////////////////////////////////////////////
+//  arxiv.org download
 
+function arxivDownload(tab) {
+    chrome.tabs.executeScript(tab.id, {file: 'js/jquery.js'}, function(){
+        chrome.tabs.executeScript(tab.id, {file:'js/arxivDownload.js'}, function (results) {
+            var residueThesis = [];
+            console.log(results);
+            if (results && results[0] && results[0].length){
+                results[0].forEach(function(item) {
+                    console.log('access = '+item.access);
+                    console.log('year = '+item.year);
+                    console.log('title = '+item.title);
+                    console.log('url = '+item.url);
+                    if(item.access){	//whether have the privilege
+                        chrome.downloads.download({
+                            url:item.url,
+                            filename:'【'+item.year+'】'+item.title+'.pdf',
+                            conflictAction: 'uniquify',
+                            saveAs: false
+                        });
+                    }
+                    else{
+                        //alert('Cannot download 《'+item.title+' 》\n You have no access authority!');
+                        residueThesis.push('《'+item.title+'》');
+                    }
+                });
+            }
+            console.log(residueThesis.length);
+            if(residueThesis.length > 0){
+                alert('Cannot download \n'+residueThesis.join('\n')+' \n You have no access authority!');
+            }
+        });
 
+    });
+}
 
+////////////////////////////////////////////////////////////////////////////////////
+// library.seg.org
 
 function segDownload(tab) {
     chrome.tabs.executeScript(tab.id, {file: 'js/jquery.js'}, function(){
@@ -124,6 +167,12 @@ function segDownload(tab) {
 
     });
 }
+
+
+
+////////////////////////////////////////////////////////////////////////////
+// sciencedirect
+
 
 function sciencedirectDownload(tab) {
     chrome.tabs.executeScript(tab.id, {file: 'js/jquery.js'}, function(){
@@ -160,6 +209,8 @@ function sciencedirectDownload(tab) {
 
     });
 }
+
+
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
     currentID = tab.id;
     currentIndex = tab.index;
@@ -171,9 +222,11 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
         var reg_ieee = /ieeexplore.ieee.org/g;
         var reg_seg = /library.seg.org/g;
 		var reg_sciencedirect = /sciencedirect.com/g;
+		var reg_arxiv = /arxiv.org/g;
         if(reg_cnki.exec(URI) !== null) match="cnki";
         if(reg_ieee.exec(URI) !== null) match="ieee";
         if(reg_sciencedirect.exec(URI) !== null) match="science";
+		if(reg_arxiv.exec(URI) !== null) match="arxiv";
         if(reg_seg.exec(URI) !== null) match="seg";
         switch (match) {
             case "ieee":
@@ -187,6 +240,9 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
                 break;
 			case "science":
 				sciencedirectDownload(tab);
+				break;
+			case "arxiv":
+				arxivDownload(tab);
 				break;
             default:
                 console.log("not matched");
