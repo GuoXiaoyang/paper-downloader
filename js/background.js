@@ -26,12 +26,19 @@ function ieeeDownload(tab) {
                             // alert(data);
                             var reg_pattern = /https:\/\/[\S]+.pdf[\S]+[\w+]/g;
                             var download_link = reg_pattern.exec(data);
-                            chrome.downloads.download({
-                                url: download_link[0],
-                                filename:'【'+item.year+'】'+item.title+'.pdf',
-                                conflictAction: 'uniquify',
-                                saveAs: false
-                            });
+							chrome.storage.sync.get('file_name_format',function(data){
+								var file_name_format = data.file_name_format;
+								file_name_format = file_name_format?file_name_format:'[%year] %title';
+								file_name = file_name_format.replace('%year',item.year).replace('%title',item.title).replace('%authors',item.authors).replace('%journal',item.journal);
+								chrome.downloads.download({
+									url: download_link[0],
+									filename:'paper_downloader/'+file_name+'.pdf',
+									conflictAction: 'uniquify',
+									saveAs: false
+								});
+
+							});
+
 
                         });
                     } else {
