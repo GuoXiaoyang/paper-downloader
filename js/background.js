@@ -29,13 +29,16 @@ function ieeeDownload(tab) {
 							chrome.storage.sync.get('file_name_format',function(data){
 								var file_name_format = data.file_name_format;
 								file_name_format = file_name_format?file_name_format:'[%year] %title';
-								file_name = file_name_format.replace('%year',item.year).replace('%title',item.title).replace('%authors',item.authors).replace('%journal',item.journal);
-								chrome.downloads.download({
-									url: download_link[0],
-									filename:'paper_downloader/'+file_name+'.pdf',
-									conflictAction: 'uniquify',
-									saveAs: false
-								});
+								file_name = file_name_format.replace('%year',item.year).replace('%month',item.month).replace('%title',item.title).replace('%authors',item.authors).replace('%journal',item.journal);
+								chrome.storage.sync.get('save_folder',function(data){
+									chrome.downloads.download({
+										url: download_link[0],
+										filename:data.save_folder + file_name+'.pdf',
+										conflictAction: 'uniquify',
+										saveAs: false
+									});
+								})
+								
 
 							});
 
@@ -153,12 +156,29 @@ function segDownload(tab) {
                     console.log('title = '+item.title);
                     console.log('url = '+item.url);
                     if(item.access){	//whether have the privilege
-                        chrome.downloads.download({
-                            url:item.url,
-                            filename:'【'+item.year+'】'+item.title+'.pdf',
-                            conflictAction: 'uniquify',
-                            saveAs: false
-                        });
+					
+						chrome.storage.sync.get('file_name_format',function(data){
+								var file_name_format = data.file_name_format;
+								file_name_format = file_name_format?file_name_format:'[%year] %title';
+								file_name = file_name_format.replace('%year',item.year).replace('%month',item.month).replace('%title',item.title).replace('%authors',item.authors).replace('%journal',item.journal);
+								chrome.storage.sync.get('save_folder',function(data){
+									chrome.downloads.download({
+										url: item.url,
+										filename:data.save_folder + file_name+'.pdf',
+										conflictAction: 'uniquify',
+										saveAs: false
+									});
+								})
+							});
+					
+					
+					
+                        // chrome.downloads.download({
+                            // url:item.url,
+                            // filename:'【'+item.year+'】'+item.title+'.pdf',
+                            // conflictAction: 'uniquify',
+                            // saveAs: false
+                        // });
                     }
                     else{
                         //alert('Cannot download 《'+item.title+' 》\n You have no access authority!');
@@ -194,12 +214,30 @@ function sciencedirectDownload(tab) {
                             var reg_pattern = /https:\/\/[\S]+.pdf[\S]+(?=")/g;
                             var download_link = reg_pattern.exec(data);
 							console.log('url:  '+download_link)
-                            chrome.downloads.download({
-                                url: download_link[0],
-                                filename: '【'+item.year+'】'+item.title+'.pdf',
-                                conflictAction: 'uniquify',
-                                saveAs: false
-                            });
+							
+							chrome.storage.sync.get('file_name_format',function(data){
+								var file_name_format = data.file_name_format;
+								file_name_format = file_name_format?file_name_format:'[%year] %title';
+								file_name = file_name_format.replace('%year',item.year).replace('%month',item.month).replace('%title',item.title).replace('%authors',item.authors).replace('%journal',item.journal);
+								chrome.storage.sync.get('save_folder',function(data){
+									chrome.downloads.download({
+										url: item.url,
+										filename:data.save_folder + file_name+'.pdf',
+										conflictAction: 'uniquify',
+										saveAs: false
+									});
+								})
+								
+
+							});
+							
+							
+                            // chrome.downloads.download({
+                                // url: download_link[0],
+                                // filename: '【'+item.year+'】'+item.title+'.pdf',
+                                // conflictAction: 'uniquify',
+                                // saveAs: false
+                            // });
 
                         });
                     } else {

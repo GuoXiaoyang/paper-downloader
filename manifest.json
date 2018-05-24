@@ -10,7 +10,7 @@
       "default_title": "Paper Downloader"
    },
    "content_scripts": [ {
-      "js": [ "js/jquery.js"],
+      "js": [ "js/jquery.js","js/chrono.min.js"],
       "matches": [ "\u003Call_urls>" ],
       "run_at": "document_end"
    },
