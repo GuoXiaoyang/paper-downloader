@@ -10,59 +10,6 @@ chrome.contextMenus.create({
 });
 
 
-<<<<<<< HEAD
-=======
-
-///////////////////////////////////////////////////////////////////////////////////////////
-// ieeexplore.ieee.org
-
-function ieeeDownload(tab) {
-    chrome.tabs.executeScript(tab.id, {file: 'js/jquery.js'}, function(){
-        chrome.tabs.executeScript(tab.id, {file:'js/ieeeDownload.js'}, function (results) {
-            var residueThesis = [];
-            if (results && results[0] && results[0].length) {
-                results[0].forEach(function(item) {
-                    if(item.access) {
-                        $.get(item.url, function (data, textStatus) {
-                            // console.log("data", data);
-                            // alert(data);
-                            var reg_pattern = /https:\/\/[\S]+.pdf[\S]+[\w+]/g;
-                            var download_link = reg_pattern.exec(data);
-							chrome.storage.sync.get('file_name_format',function(data){
-								var file_name_format = data.file_name_format;
-								file_name_format = file_name_format?file_name_format:'[%year] %title';
-								file_name = file_name_format.replace('%year',item.year).replace('%month',item.month).replace('%title',item.title).replace('%authors',item.authors).replace('%journal',item.journal);
-								chrome.storage.sync.get('save_folder',function(data){
-									chrome.downloads.download({
-										url: download_link[0],
-										filename:data.save_folder + file_name+'.pdf',
-										conflictAction: 'uniquify',
-										saveAs: false
-									});
-								})
-								
-
-							});
-
-
-                        });
-                    } else {
-                        residueThesis.push('《'+item.filename+'》');
-                    }
-                })
-
-            }
-            console.log(residueThesis.length);
-            if(residueThesis.length > 0){
-                alert('Cannot download \n'+residueThesis.join('\n')+' \n You have no access authority!');
-            }
-        });
-
-    });
-}
-
-
->>>>>>> a6f98ffc3ea8027c4cb1e6d70fd9093b25bda983
 ////////////////////////////////////////////////////////////////////////////////////
 // cnki
 
@@ -211,7 +158,6 @@ function segDownload(tab) {
             if (results && results[0] && results[0].length){
                 results[0].forEach(function(item) {
                     if(item.access){	//whether have the privilege
-<<<<<<< HEAD
 						chrome.storage.sync.get('file_name_format',function(data){
 							var file_name_format = data.file_name_format;
 							chrome.storage.sync.get('save_folder',function(data){
@@ -231,31 +177,6 @@ function segDownload(tab) {
 								});
 							})
 						});
-=======
-					
-						chrome.storage.sync.get('file_name_format',function(data){
-								var file_name_format = data.file_name_format;
-								file_name_format = file_name_format?file_name_format:'[%year] %title';
-								file_name = file_name_format.replace('%year',item.year).replace('%month',item.month).replace('%title',item.title).replace('%authors',item.authors).replace('%journal',item.journal);
-								chrome.storage.sync.get('save_folder',function(data){
-									chrome.downloads.download({
-										url: item.url,
-										filename:data.save_folder + file_name+'.pdf',
-										conflictAction: 'uniquify',
-										saveAs: false
-									});
-								})
-							});
-					
-					
-					
-                        // chrome.downloads.download({
-                            // url:item.url,
-                            // filename:'【'+item.year+'】'+item.title+'.pdf',
-                            // conflictAction: 'uniquify',
-                            // saveAs: false
-                        // });
->>>>>>> a6f98ffc3ea8027c4cb1e6d70fd9093b25bda983
                     }
                     else{
                         //alert('Cannot download 《'+item.title+' 》\n You have no access authority!');
@@ -287,7 +208,6 @@ function sciencedirectDownload(tab) {
                     if(item.access) {
                         $.get(item.url, function (data, textStatus) {
                             var reg_pattern = /https:\/\/[\S]+.pdf[\S]+(?=")/g;
-<<<<<<< HEAD
                             item.url = reg_pattern.exec(data)[0];
 							//console.log('url:  '+download_link)
 							
@@ -302,16 +222,6 @@ function sciencedirectDownload(tab) {
 									var engine = 'SD';
 									file_name_format = file_name_format?file_name_format:'[%year] %title';
 									file_name = file_name_format.replace('%year',item.year).replace('%month',item.month).replace('%title',item.title).replace('%authors',item.authors).replace('%journal',item.journal).replace('%engine',engine);
-=======
-                            var download_link = reg_pattern.exec(data);
-							console.log('url:  '+download_link)
-							
-							chrome.storage.sync.get('file_name_format',function(data){
-								var file_name_format = data.file_name_format;
-								file_name_format = file_name_format?file_name_format:'[%year] %title';
-								file_name = file_name_format.replace('%year',item.year).replace('%month',item.month).replace('%title',item.title).replace('%authors',item.authors).replace('%journal',item.journal);
-								chrome.storage.sync.get('save_folder',function(data){
->>>>>>> a6f98ffc3ea8027c4cb1e6d70fd9093b25bda983
 									chrome.downloads.download({
 										url: item.url,
 										filename:data.save_folder + file_name+'.pdf',
@@ -319,22 +229,7 @@ function sciencedirectDownload(tab) {
 										saveAs: false
 									});
 								})
-<<<<<<< HEAD
 							});
-=======
-								
-
-							});
-							
-							
-                            // chrome.downloads.download({
-                                // url: download_link[0],
-                                // filename: '【'+item.year+'】'+item.title+'.pdf',
-                                // conflictAction: 'uniquify',
-                                // saveAs: false
-                            // });
-
->>>>>>> a6f98ffc3ea8027c4cb1e6d70fd9093b25bda983
                         });
                     } else {
                         residueThesis.push('《'+item.title+'》');
