@@ -8,7 +8,11 @@ if($(".toc").length){
 		var url = $(".ref.nowrap.pdf",targetItem)[0].href + "?download=true";
 		var title = $(".hlFld-Title",targetItem).text().replace(/\W/g,' ');
 		var year = $(".pubDate",targetItem).text().match(/\d{4}/);
+<<<<<<< HEAD
 		var month = (chrono.parseDate($(".pubDate",targetItem).text()).getMonth()+1).toString();
+=======
+		var month = chrono.parseDate($(".pubDate",targetItem).text()).getMonth().toString();
+>>>>>>> a6f98ffc3ea8027c4cb1e6d70fd9093b25bda983
 		if(!year){
 			year = $("h2").text().match(/\d{4}/);
 			month = '';
@@ -27,7 +31,11 @@ if($(".toc").length){
 		var url = $(".ref.nowrap.pdf",targetItem)[0].href + "?download=true";
 		var title = $(".hlFld-Title",targetItem).text().replace(/\W/g,' ');
 		var year = $(".art_meta",targetItem).text().match(/\d{4}/);
+<<<<<<< HEAD
 		var month = (chrono.parseDate($(".art_meta",targetItem).text()).getMonth()+1).toString();
+=======
+		var month = chrono.parseDate($(".art_meta",targetItem).text()).getMonth().toString();
+>>>>>>> a6f98ffc3ea8027c4cb1e6d70fd9093b25bda983
 		var authors = $(".entryAuthor",targetItem).text().replace(/[\s\r\n]{2,}/g,"");
 		var journal = $(".searchResultJournal",targetItem).text().trim();
 		var download_success = $(".accessIcon",targetItem);

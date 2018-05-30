@@ -8,7 +8,11 @@ if($(".ResultList.col-xs-24").length){
 		var url = $(".download-link",targetItem)[0].href;
 		var title = $(".result-item-content h2>a",targetItem).text().replace(/\W/g,' ');
 		var year = $(".SubType>li:eq(2)>span:eq(0)",targetItem).text().match(/\d{4}/g);
+<<<<<<< HEAD
 		var month = (chrono.parseDate($(".SubType>li:eq(2)>span:eq(0)",targetItem).text()).getMonth()+1).toString();
+=======
+		var month = chrono.parseDate($(".SubType>li:eq(2)>span:eq(0)",targetItem).text()).getMonth().toString();
+>>>>>>> a6f98ffc3ea8027c4cb1e6d70fd9093b25bda983
 		var authors = $(".Authors",targetItem).text().replace(/[\s\r\n]{2,}/g,"");
 		var journal = $(".SubType>li:eq(0)>a>span",targetItem).text();
 		var download_success = $(".preview-link-text",targetItem);
@@ -23,7 +27,11 @@ if($(".ResultList.col-xs-24").length){
 		var url = $(".pdf-download",targetItem)[0].href;
 		var title = $("h3>a",targetItem).text().replace(/\W/g,' ');
 		var year = $(".js-issue-status").text().match(/\d{4}/g);
+<<<<<<< HEAD
 		var month = (chrono.parseDate($(".js-issue-status").text()).getMonth()+1).toString();
+=======
+		var month = chrono.parseDate($(".js-issue-status").text()).getMonth().toString();
+>>>>>>> a6f98ffc3ea8027c4cb1e6d70fd9093b25bda983
 		var authors = $(".js-article__item__authors",targetItem).text().replace(/[\s\r\n]{2,}/g,"");
 		var journal = $("h1>a").text();
 		var download_success = $(".pdf-download",targetItem);
