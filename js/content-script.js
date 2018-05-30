@@ -10,3 +10,5 @@ liResults.forEach(li => {
 	li.style.listStyle = "none"
 	li.insertBefore(checkbox, li.firstElementChild)
 })
+
+$("dt>a").replaceWith("<input type = checkbox class = result-checkbox></input>")
