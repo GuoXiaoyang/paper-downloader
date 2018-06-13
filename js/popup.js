@@ -9,6 +9,9 @@ chrome.storage.sync.get('save_folder',function(data){
 	document.getElementById('save_folder').value = save_folder;
 })
 document.getElementById('save').onclick = function(){
-	chrome.storage.sync.set({'file_name_format':document.getElementById('file_name_format').value},function(){});
-	chrome.storage.sync.set({'save_folder':document.getElementById('save_folder').value},function(){});
+	chrome.storage.sync.set({'file_name_format':document.getElementById('file_name_format').value},function(){
+		chrome.storage.sync.set({'save_folder':document.getElementById('save_folder').value},function(){
+			alert("save successfully!");
+		});
+	});
 }

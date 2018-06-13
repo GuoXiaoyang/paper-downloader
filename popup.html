@@ -1,29 +1,117 @@
-<!DOCTYPE html>
-<!-- <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Paper downloader</title>
-</head>
-<body>
-  <div class="container">
-    paper downloader
-  </div>
-</body>
-</html> -->
-<html>
-    <head>
-        <title>Set file name format</title>
-    </head>
-    <body>
-		Set file name format:
-        <input type="text" id="file_name_format" />
-		<p/>
-		Set save folder:
-		<input type="text" id="save_folder">
-		<p/>
-        <input type="button" id="save" value="save" />
-        <script src="popup.js"></script>
-    </body>
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Paper Downloader</title>
+
+    <link rel="stylesheet" href="css/material.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+    #save{
+      position: fixed;
+      display: block;
+      right: 0;
+      top: 0;
+      margin-right: 8px;
+      margin-top: 1px;
+      z-index: 900;
+    }
+    .mdl-layout__header-row{
+      height: 26px;
+      margin-left: -16px;
+    }
+    .mdl-layout__header{
+      min-height: 38px;  
+      position: fixed;
+    }
+    .mdl-demo{
+      min-width: 450px;
+    }
+    main{
+      margin-top: 32px;
+    }
+    h6{
+      margin: 0px;
+      font-weight: bold;
+    }
+    .mdl-card__supporting-text{
+      -webkit-text-fill-color:rgb(179, 169, 169);
+    }
+    .mdl-card__actions{
+      -webkit-text-fill-color: black;
+    }
+    </style>
+  </head>
+  <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      
+      <header class="mdl-layout__header">
+        <div class=" mdl-layout__header-row">
+          <h5>Settings </h5>
+        </div>
+      </header>
+      <main class="mdl-layout__content">
+        <div class="mdl-layout__tab-panel is-active" id="overview">
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__actions mdl-shadow--2dp">
+                <h6>Set file name format:</h6> 
+                <input class="mdl-textfield__input" type="text" id="file_name_format">
+              </div>  
+              <div class="mdl-card__supporting-text">
+                <h6>Rules:</h6>
+                %engine : search website mark <br/>
+                %year   : article publish year <br/>
+                %month  : article publish month <br/>
+                %title  : article title <br/>
+                %authors: article authors <br/>
+                %journal: article journal <br/>
+                <h6>Example:</h6>
+                [%engine][%year.%month] %title <br/>
+                (You will get a pdf file like this : [ArXiv][2018.6] PatchFCN for Intracranial Hemorrhage Detection.pdf)
+              </div>
+            </div>
+          </section>
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__actions mdl-shadow--2dp">
+                <h6>Set save folder path:</h6> 
+                <input class="mdl-textfield__input" type="text" id="save_folder">
+              </div>
+              <div class="mdl-card__supporting-text">
+                <h6>Rules:</h6>
+                Relative path to your browser download folder.
+                <h6>Example:</h6>
+                ./Papers/ <br/>
+                (You will save your pdf file in the C:/Users/x/Downloads/Paper/ folder if your browser download folder is C:/Users/x/Downloads/)
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <input type="button" id="save" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast" value = " Save "/>
+    <script src="js/material.min.js"></script>
+	<script src="js/popup.js"></script>
+  </body>
 </html>

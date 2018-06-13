@@ -18,8 +18,6 @@ function cnkiDownload(tab) {
 
         chrome.tabs.executeScript(tab.id, {file: 'js/cnkiDownload.js'}, function () {
             console.log("excecute script");
-
-
         });
     });
 
@@ -120,7 +118,7 @@ function arxivDownload(tab) {
 								console.log('month = ' + item.month);
 								console.log('title = '+item.title);
 								console.log('url = '+item.url);
-								var engine = 'arXiv';
+								var engine = 'ArXiv';
 								file_name_format = file_name_format?file_name_format:'[%year] %title';
 								file_name = file_name_format.replace('%year',item.year).replace('%month',item.month).replace('%title',item.title).replace('%authors',item.authors).replace('%journal',item.journal).replace('%engine',engine);
 								chrome.downloads.download({
