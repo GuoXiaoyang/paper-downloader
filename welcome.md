@@ -1,6 +1,6 @@
 # What is PaperDownloader?
 
-​	Have you ever bothered with the meaningless name of pdf downloaded from IEEE ( such as `08353462.pdf` ) or other scientific website. This plugin can help you dealing with this problem.
+Have you ever bothered with the meaningless name of pdf downloaded from IEEE ( such as `08353462.pdf` ) or other scientific website. This plugin can help you dealing with this problem.
 	It can auto download paper you selected and rename it by the format you defined. (such as `[engine][year.month] title`, then the `08353462.pdf` will be renamed as `[IEEE][2018.5] Isotropic Estimators of Local Background Statistics for Target Detection in Imagery.pdf` ). 
 
 
@@ -15,29 +15,29 @@
 
 - [library.seg.org](https://library.seg.org/)
 
-- [arXiv.org][https://arxiv.org/search/]
+- [arXiv.org](https://arxiv.org/search/)
 
 - [cnki](http://www.cnki.net/)
 
-  ## Wich browsers are supported?
+## Wich browsers are supported?
 
-  - Chrome browser（谷歌浏览器）
-  - Chromium browser (谷歌开源浏览器)
-  - 360 browser （360安全浏览器）
-  - CM browser   (猎豹浏览器)
-  - UC browser  (UC Web浏览器)
-  - QQ browser (QQ浏览器)
-  - Baidu browser （百度浏览器）
-  - Sogou browser （搜狗浏览器）
-  - Maxthon browser  (遨游浏览器)
+- Chrome browser（谷歌浏览器）
+- Chromium browser (谷歌开源浏览器)
+- 360 browser （360安全浏览器）
+- CM browser   (猎豹浏览器)
+- UC browser  (UC Web浏览器)
+- QQ browser (QQ浏览器)
+- Baidu browser （百度浏览器）
+- Sogou browser （搜狗浏览器）
+- Maxthon browser  (遨游浏览器)
 
 ## How to install and configure it?
 
-​	First, you can install it from chrome webstore or directly download the .crx file and drag it into the browser. if you can see the ![icon16](D:\OneDrive\OneDrive - mails.ucas.edu.cn\PaperDownloader\images\icon16.png) in top-right side of the browser, the PaperDownloader is successfully installed.
+​First, you can install it from chrome webstore or directly download the .crx file and drag it into the browser. if you can see the ![icon16](./images/icon16.png) in top-right side of the browser, the PaperDownloader is successfully installed.
 
-​	Second,  left click the ![icon16](D:\OneDrive\OneDrive - mails.ucas.edu.cn\PaperDownloader\images\icon16.png), then the configure page will appear (as follows)
+​Second,  left click the ![icon16](./images/icon16.png), then the configure page will appear (as follows)
 
-![1530012850817](D:\OneDrive\OneDrive - mails.ucas.edu.cn\PaperDownloader\images\1530012850817.png)
+![1530012850817](./images/1530012850817.png)
 
 ​	Two place you need to configure. 
 
@@ -60,7 +60,7 @@
    [%engine][%year.%month] %title
    ```
 
-   ​	(You will get a pdf file like this : \[ArXiv][2018.6] PatchFCN for Intracranial Hemorrhage Detection.pdf)
+   ​	(You will get a pdf file like this : **_[ArXiv][2018.6] PatchFCN for Intracranial Hemorrhage Detection.pdf_**)
 
 - The other is the "Set save folder path".
 
@@ -74,7 +74,7 @@
   Papers/  
   ```
 
-  (You will save your pdf file in the C:/Users/x/Downloads/Paper/ folder if your browser download folder is C:/Users/x/Downloads/)
+  (You will save your pdf file in the `C:/Users/x/Downloads/Paper/` folder if your browser download folder is `C:/Users/x/Downloads/`)
 
 ## How to use it?
 

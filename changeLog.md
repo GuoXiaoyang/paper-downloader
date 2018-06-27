@@ -1,8 +1,17 @@
 # Change Log
 
+## Version 1.5.0
+
+#### (2018-06-28)
+- Support user-defined filename format
+- Support user-defined download path
+- Add popup page
+- Add support for ArXiV website
+- Bugs fix
+
 ## Version 1.4.2
 
-####(2018-05-11)
+#### (2018-05-11)
 
 - Now PaperDownloader can help you autorename the pdf name when you download papers in a issue list of a journal. Try it: 
   - [IEEE Geoscience and Remote Sensing Letters](https://ieeexplore.ieee.org/xpl/tocresult.jsp?isnumber=4357975) in ieeexplore.ieee.org

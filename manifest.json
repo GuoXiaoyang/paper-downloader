@@ -29,5 +29,5 @@
    "name": "Paper Downloader",
    "permissions": [ "\u003Call_urls>", "webNavigation", "contextMenus", "tabs", "downloads" , "storage"],
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "1.4.2"
+   "version": "1.5.0"
 }
