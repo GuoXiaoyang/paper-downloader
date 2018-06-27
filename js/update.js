@@ -9,7 +9,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
   var previousVersion  = details.previousVersion;
   if (details.reason === 'install') {
     chrome.tabs.create({
-      url: chrome.runtime.getURL('pages/welcome.html'),
+      url: chrome.runtime.getURL('welcome.html'),
       active: true
     }, function(tabInfo) {
       Updates.tabId = tabInfo.id;
@@ -20,7 +20,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
       Options.refreshSettings(function() {
         if (settings.changelog) {
           chrome.tabs.create({
-            url: chrome.runtime.getURL('pages/changelog.html'),
+            url: chrome.runtime.getURL('changelog.html'),
             active: true
           });
         }
