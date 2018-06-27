@@ -9,7 +9,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
   var previousVersion  = details.previousVersion;
   if (details.reason === 'install') {
     chrome.tabs.create({
-      url: chrome.runtime.getURL('https://github.com/GuoXiaoyang/PaperDownloader/blob/master/welcome.md'),
+      url: 'https://github.com/GuoXiaoyang/PaperDownloader/blob/master/welcome.md',
       active: true
     }, function(tabInfo) {
       Updates.tabId = tabInfo.id;
@@ -20,7 +20,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
       Options.refreshSettings(function() {
         if (settings.changelog) {
           chrome.tabs.create({
-            url: chrome.runtime.getURL('chttps://github.com/GuoXiaoyang/PaperDownloader/blob/master/changeLog.md'),
+            url: 'https://github.com/GuoXiaoyang/PaperDownloader/blob/master/changeLog.md',
             active: true
           });
         }
