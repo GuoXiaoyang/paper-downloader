@@ -8,13 +8,17 @@ if($(".toc").length){
 		var url = $(".ref.nowrap.pdf",targetItem)[0].href + "?download=true";
 		var title = $(".hlFld-Title",targetItem).text().replace(/\W/g,' ');
 		var year = $(".pubDate",targetItem).text().match(/\d{4}/);
-		if(!year) year = $("h2").text().match(/\d{4}/);
+		var month = (chrono.parseDate($(".pubDate",targetItem).text()).getMonth()+1).toString();
+		if(!year){
+			year = $("h2").text().match(/\d{4}/);
+			month = '';
+		}
 		var authors = $(".entryAuthor",targetItem).text().replace(/[\s\r\n]{2,}/g,"");
 		var journal = $("h1").text().trim();
 		var download_success = $(".accessIcon",targetItem);
 		var access = (download_success.length == 1);
 		console.log('title:'+title+'\n url:'+url+'\n authors:'+authors+'\n journal:'+journal+'\n year:'+year+'\n access:'+access);
-		return {title:title, url:url, access:access, year:year, authors:authors, journal:journal};
+		return {title:title, url:url, access:access, year:year, month:month, authors:authors, journal:journal};
 	});
 }else{
 	var dashboard = $("#frmSearchResults");
@@ -23,12 +27,13 @@ if($(".toc").length){
 		var url = $(".ref.nowrap.pdf",targetItem)[0].href + "?download=true";
 		var title = $(".hlFld-Title",targetItem).text().replace(/\W/g,' ');
 		var year = $(".art_meta",targetItem).text().match(/\d{4}/);
+		var month = (chrono.parseDate($(".art_meta",targetItem).text()).getMonth()+1).toString();
 		var authors = $(".entryAuthor",targetItem).text().replace(/[\s\r\n]{2,}/g,"");
 		var journal = $(".searchResultJournal",targetItem).text().trim();
 		var download_success = $(".accessIcon",targetItem);
 		var access = (download_success.length == 1);
 		console.log('title:'+title+'\n url:'+url+'\n authors:'+authors+'\n journal:'+journal+'\n year:'+year+'\n access:'+access);
-		return {title:title, url:url, access:access, year:year, authors:authors, journal:journal};
+		return {title:title, url:url, access:access, year:year, month:month, authors:authors, journal:journal};
 	});
 }
  

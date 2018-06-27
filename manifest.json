@@ -1,6 +1,6 @@
 {
    "background": {
-	  "scripts": [ "js/background.js", "js/jquery.js", "js/ieeeDownload.js", "js/sciencedirectDownload.js","js/update.js"]
+	  "scripts": [ "js/background.js", "js/jquery.js", "js/ieeeDownload.js", "js/sciencedirectDownload.js", "js/arxivDownload.js", "js/segDownload.js","js/update.js"]
    }, 
    "browser_action": {
       "default_icon": {
@@ -10,9 +10,13 @@
       "default_title": "Paper Downloader"
    },
    "content_scripts": [ {
-      "js": [ "js/jquery.js"],
+      "js": [ "js/jquery.js","js/chrono.min.js"],
       "matches": [ "\u003Call_urls>" ],
       "run_at": "document_end"
+   },
+   {
+      "matches": ["https://arxiv.org/*"],
+      "js": ["js/content-script.js"]
    }],
    "description": "下载论文",
    "icons": {
@@ -23,7 +27,7 @@
    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAk6Vq0oycQXSWT93xMtApAGPKPPSgQ64SBTfxa9gChrJqAlsiRDWaG/7B3iL/Sjr9v9+fT7jxuMAKqQ3ewqTT2zDWQxpmb2gJMbmtv2K5R3SK7h8dtLBtrDxKhqNK70uEm5xrKhicBTd5N9ZwQc5NrdeLTlDfcd972UiawseI1Tzy2lmkG2aQTRgeIH3NKpkO/IZDAn47H0QYUgIIzq0e4pTGicRoMhQcypr6Ai87oROj+LqikrJspV4J7aPjD5Ma8ebOOjmxGOYOV7JFE48chqhTOoVOo6FOOdsAqTrvwZuAvMJm/y6Fmb9QzQV/IeNiLVMVUViwe9YaV65q4ABBaQIDAQAB",
    "manifest_version": 2,
    "name": "Paper Downloader",
-   "permissions": [ "\u003Call_urls>", "webNavigation", "contextMenus", "tabs", "downloads" ],
+   "permissions": [ "\u003Call_urls>", "webNavigation", "contextMenus", "tabs", "downloads" , "storage"],
    "update_url": "https://clients2.google.com/service/update2/crx",
    "version": "1.4.2"
 }
