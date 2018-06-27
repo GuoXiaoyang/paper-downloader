@@ -24,7 +24,7 @@
 
 - Fix the bugs when downloading papers from library.seg.org
 
-##Version 1.4.0
+## Version 1.4.0
 
 #### (2018-05-02):
 
