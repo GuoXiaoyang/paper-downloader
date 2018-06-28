@@ -74,9 +74,11 @@ function ieeeDownload(tab) {
 									var engine = 'IEEE';
 									file_name_format = file_name_format?file_name_format:'[%year] %title';
 									file_name = file_name_format.replace('%year',item.year).replace('%month',item.month).replace('%title',item.title).replace('%authors',item.authors).replace('%journal',item.journal).replace('%engine',engine);
-									chrome.downloads.download({
+                                    var save_folder = data.save_folder;
+                                    save_folder = save_folder?save_folder:'';
+                                    chrome.downloads.download({
 										url: download_link[0],
-										filename:data.save_folder + file_name+'.pdf',
+										filename:save_folder + file_name+'.pdf',
 										conflictAction: 'uniquify',
 										saveAs: false
 									});
@@ -121,9 +123,11 @@ function arxivDownload(tab) {
 								var engine = 'ArXiv';
 								file_name_format = file_name_format?file_name_format:'[%year] %title';
 								file_name = file_name_format.replace('%year',item.year).replace('%month',item.month).replace('%title',item.title).replace('%authors',item.authors).replace('%journal',item.journal).replace('%engine',engine);
-								chrome.downloads.download({
+                                var save_folder = data.save_folder;
+                                save_folder = save_folder?save_folder:'';
+                                chrome.downloads.download({
 									url: item.url,
-									filename:data.save_folder + file_name+'.pdf',
+									filename:save_folder + file_name+'.pdf',
 									conflictAction: 'uniquify',
 									saveAs: false
 								});
@@ -167,9 +171,11 @@ function segDownload(tab) {
 								var engine = 'SEG';
 								file_name_format = file_name_format?file_name_format:'[%year] %title';
 								file_name = file_name_format.replace('%year',item.year).replace('%month',item.month).replace('%title',item.title).replace('%authors',item.authors).replace('%journal',item.journal).replace('%engine',engine);
-								chrome.downloads.download({
+								var save_folder = data.save_folder;
+                                save_folder = save_folder?save_folder:'';
+                                chrome.downloads.download({
 									url: item.url,
-									filename:data.save_folder + file_name+'.pdf',
+									filename:save_folder + file_name+'.pdf',
 									conflictAction: 'uniquify',
 									saveAs: false
 								});
@@ -216,12 +222,14 @@ function sciencedirectDownload(tab) {
 									var engine = 'SD';
 									file_name_format = file_name_format?file_name_format:'[%year] %title';
 									file_name = file_name_format.replace('%year',item.year).replace('%month',item.month).replace('%title',item.title).replace('%authors',item.authors).replace('%journal',item.journal).replace('%engine',engine);
-									chrome.downloads.download({
-										url: item.url,
-										filename:data.save_folder + file_name+'.pdf',
-										conflictAction: 'uniquify',
-										saveAs: false
-									});
+									var save_folder = data.save_folder;
+                                    save_folder = save_folder?save_folder:'';
+                                    chrome.downloads.download({
+                                        url: item.url,
+                                        filename:save_folder + file_name+'.pdf',
+                                        conflictAction: 'uniquify',
+                                        saveAs: false
+                                    });
 								})
 							});
                         });
