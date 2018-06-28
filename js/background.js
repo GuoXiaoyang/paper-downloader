@@ -187,47 +187,11 @@ function segDownload(tab) {
                 alert('Cannot download \n'+residueThesis.join('\n')+' \n You have no access authority!');
             }
         });
-
     });
 }
 
-function sciencedirectDownload(tab) {
-    chrome.tabs.executeScript(tab.id, {file: 'js/jquery.js'}, function(){
-        chrome.tabs.executeScript(tab.id, {file:'js/sciencedirectDownload.js'}, function (results) {
-            var residueThesis = [];
-            if (results && results[0] && results[0].length) {
-                results[0].forEach(function(item) {
-                    if(item.access) {
-                        $.get(item.url, function (data, textStatus) {
-                            // console.log("data", data);
-                            // alert(data);
-                            var reg_pattern = /https:\/\/[\S]+.pdf[\S]+(?=")/g;
-                            var download_link = reg_pattern.exec(data);
-							console.log('url:  '+download_link)
-                            chrome.downloads.download({
-                                url: download_link[0],
-                                filename: '【'+item.year+'】'+item.title+'.pdf',
-                                conflictAction: 'uniquify',
-                                saveAs: false
-                            });
-
-                        });
-                    } else {
-                        residueThesis.push('《'+item.title+'》');
-                    }
-                })
-
-            }
-            console.log(residueThesis.length);
-            if(residueThesis.length > 0){
-                alert('Cannot download \n'+residueThesis.join('\n')+' \n You have no access authority!');
-            }
-        });
-
-
 ////////////////////////////////////////////////////////////////////////////
 // sciencedirect
-
 
 function sciencedirectDownload(tab) {
     chrome.tabs.executeScript(tab.id, {file: 'js/jquery.js'}, function(){
