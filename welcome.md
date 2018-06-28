@@ -1,7 +1,7 @@
 # What is PaperDownloader?
 
 Have you ever bothered with the meaningless name of pdf downloaded from IEEE ( such as `08353462.pdf` ) or other scientific website. This plugin can help you dealing with this problem.
-	It can auto download paper you selected and rename it by the format you defined. (such as `[engine][year.month] title`, then the `08353462.pdf` will be renamed as **_IEEE][2018.5] Isotropic Estimators of Local Background Statistics for Target Detection in Imagery.pdf_**). 
+	It can auto download paper you selected and rename it by the format you defined. (such as `[engine][year.month] title`, then the `08353462.pdf` will be renamed as **_[IEEE][2018.5] Isotropic Estimators of Local Background Statistics for Target Detection in Imagery.pdf_**). 
 
 
 
@@ -22,14 +22,6 @@ Have you ever bothered with the meaningless name of pdf downloaded from IEEE ( s
 ## Wich browsers are supported?
 
 - Chrome browser（谷歌浏览器）
-- Chromium browser (谷歌开源浏览器)
-- 360 browser （360安全浏览器）
-- CM browser   (猎豹浏览器)
-- UC browser  (UC Web浏览器)
-- QQ browser (QQ浏览器)
-- Baidu browser （百度浏览器）
-- Sogou browser （搜狗浏览器）
-- Maxthon browser  (遨游浏览器)
 
 ## How to install and configure it?
 
