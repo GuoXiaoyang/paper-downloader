@@ -18,12 +18,12 @@ if($(".results").length) {
 		return {title:title, url:url, access:access, year:year, month:month, authors:authors, journal:journal};
 	});
 } else {
-	var dashboard=$(".article-list.List-results");
+	var dashboard=$(".List-results-items");
 	[].map.call($("input:checked",dashboard),function (result) {
 		var targetItem = $(result).parent().parent();
 		var url = $(".icon-pdf",targetItem)[0].href;
 		console.log("checked-downloader-links:",url);
-		var title = $(".col-22-24 h2>a",targetItem).text().replace(/\W/g,' ');
+		var title = $(".result-item-align h2>a",targetItem).text().replace(/\W/g,' ');
 		var year = $(".description>div:eq(0)>span:eq(0)",targetItem).text().match(/\d{4}/g);
 		var month = '';
 		var authors = $(".author",targetItem).text().replace(/[\s\r\n]/g,"");
